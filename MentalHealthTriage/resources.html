@@ -1,0 +1,114 @@
+<!-- Resources Page -->
+
+<!DOCTYPE html>
+<html style="color: #212529;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Resources</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+</head>
+
+<body id="page-top" style="background-color: rgb(115, 143, 180);">
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav" style="background-color: #3ca699;">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="#">Mental Health Triage</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link active js-scroll-trigger" href="checkin.html">check in</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="activitytracker.html">activity tracker</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="resources.html">resources</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="brand-heading" style="font-size: 59px;">Resources</h1>
+                        <p class="intro-text">.</p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" class="content-section text-center">
+    <form  id="form1">
+        <!-- Form start, includes three options for answers that are put into an array below -->
+
+        <p>What resources would you like to explore?</p>
+        <input type="checkbox" name="genre"  value="nutrition" />nutrition
+        <input type="checkbox" name="genre"  value="sleep" />sleep
+        <input type="checkbox" name="genre"  value="managingstress" />managing stress
+        
+        <input type="submit" value="Submit">
+        </form>
+        
+        <p>Resources you might find helpful: </p>
+        <p id="answer"></p>
+        <p id="answer2"></p>
+        
+        <script>    
+        document.getElementById("form1").onsubmit=function() {
+        
+        //this resets what is in the DOM
+        document.getElementById("answer").innerHTML = "";
+        document.getElementById("answer2").innerHTML = "";
+        
+        //takes values from checkbox and puts in an array
+        checkboxes = document.querySelectorAll("input[name='genre']:checked");
+        
+        //genre arrays to hold answers 
+        nutrition = ['<a href="https://www.nhs.uk/live-well/eat-well/">NHS Eat Well Tips</a>', '<a href="https://www.nhs.uk/live-well/healthy-weight/start-the-nhs-weight-loss-plan/"> NHS Weight Plan (for safe weight loss and weight gain) </a>', '<a href="https://www.deliciousmagazine.co.uk/collections/midweek-meal-recipes/"> Recipies/ Meal Ideas</a>'];
+        sleep = ['<a href="https://www.nhs.uk/oneyou/every-mind-matters/sleep/">Trouble Sleeping?</a>', '<a href="https://assets.nhs.uk/tools/self-assessments/index.mob.html?variant=72"> NHS Sleep Self-Assessment</a>', '<a href="https://www.nhs.uk/live-well/sleep-and-tiredness/how-to-get-to-sleep/"> How to Get to Sleep Tips</a>'];
+        managingstress = ['<a href="https://www.nhs.uk/conditions/stress-anxiety-depression/reduce-stress/">Stress Busters</a>', '<a href="https://www.youtube.com/watch?v=1KYC5SsJjx8"> BBC Stress Analogy Video</a>', '<a href="https://www.mindful.org/how-to-meditate/"> Mindfulness/ Meditation Tips</a>'];
+        
+        
+        //loop that goes through each element of the checkbox array
+        for( i=0; i < checkboxes.length; i++ ) {
+          document.getElementById("answer").innerHTML += checkboxes[i].value + ", ";
+          
+          //if statements that check value and add correct genre array to DOM
+          if(checkboxes[i].value == "nutrition") {
+          document.getElementById("answer2").innerHTML += nutrition + "<br>";
+          }
+          if(checkboxes[i].value == "sleep") {
+          document.getElementById("answer2").innerHTML += sleep + "<br>";
+          }
+          if(checkboxes[i].value == "managingstress") {
+          document.getElementById("answer2").innerHTML += managingstress  + "<br>";
+          }
+        }	   
+               return false; 
+               }// end the submit function
+            
+        </script>
+    </section>
+
+    <section id="download" class="download-section content-section text-center" style="background-image:url('assets/img/downloads-bg.jpg');">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <h1>Get started</h1>
+                <p>*</p>
+                <li class="nav-item nav-link btn-link btn-lg btn-default js-scroll-trigger" role="presentation"><a class="nav-link btn-lg active btn-default btn-link js-scroll-trigger" href="checkin.html">Check In</a></li>
+                
+        </div>
+    </section>
+    <div class="map-clean"></div>
+    <footer>
+        <div class="container text-center">
+            <p>MHT</p>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="assets/js/grayscale.js"></script>
+</body>
+
+</html>

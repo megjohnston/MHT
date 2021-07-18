@@ -1,0 +1,147 @@
+<!-- Activity Tracker Page -->
+
+<!DOCTYPE html>
+<html style="color: #212529;">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Activity Tracker</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+</head>
+
+<!-- Same Nav Bar -->
+<body id="page-top" style="background-color: rgb(67, 138, 196);">
+    <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav" style="background-color: #3ca699;">
+        <div class="container"><a class="navbar-brand js-scroll-trigger" href="index.html">Mental Health Triage</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="nav navbar-nav ml-auto">
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link active js-scroll-trigger" href="checkin.html">check in</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="activitytracker.html">activity tracker</a></li>
+                    <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="resources.html">resources</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <h1 class="brand-heading" style="font-size: 59px;">Daily Activity Tracker</h1>
+                        <p class="intro-text">:)</p><a class="btn btn-link btn-circle" role="button" href="#about"><i class="fa fa-angle-double-down animated"></i></a></div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section id="about" class="content-section text-center">
+        <div id="main">
+            <h1>How many hours per day do you spend?:</h1>
+            <!-- Form to input hours -->
+            <table>
+            <form id="form1">
+               <tr><td>At Work/ Commuting: </td><td><input type="text" name="workvar" id="workvar"></td></tr>
+               <tr><td>Eating: </td><td><input type="text" name="eatvar" id="eatvar"></td></tr>
+               <tr><td>Sleeping: </td><td><input type="text" name="sleepvar" id="sleepvar"></td></tr>
+               <tr><td>Entertainment/ Hobbies/ Down Time: </td><td><input type="text" name="entvar" id="entvar"></td></tr>
+               <tr><td>Scheduled Activities (eg. exercise class, counseling, weekly lunch with mum, volunteering): </td><td><input type="text" name="schedvar" id="schedvar"></td></tr>
+              <tr><td> <input type="submit" value="Submit"></td></tr>
+               </form>
+           </table>
+               
+               <!-- total is inputted from the calculation below -->
+                 <p>Total: <span id="total"></span></p>
+                 <p>That leaves <span id="difference"></span> hours in your day.</p>
+                 <p>Could there be any extra time in your day you could dedicate to self-care activities?</p>
+              
+                 <!-- this draws the divs for bars and text -->
+                 <div id="workdiv" class="bars"></div>
+                 <div id="worktext" class="text"></div><br />
+                 <div id="eatdiv" class="bars"></div>
+                 <div id="eattext" class="text"></div><br />
+                 <div id="sleepdiv" class="bars"></div>
+                 <div id="sleeptext" class="text"></div>
+                 <div id="entdiv" class="bars"></div>
+                 <div id="enttext" class="text"></div><br />
+                 <div id="scheddiv" class="bars"></div>
+                 <div id="schedtext" class="text"></div><br />
+                 
+            </div>  
+              <script type="text/javascript">
+              
+              //Executes on form submit
+               document.getElementById("form1").onsubmit=function() {
+               
+               //these lines get the value from the form and put it in a variable. the || indicates a 0 if empty.
+                 work = parseFloat(document.getElementById('workvar').value) || 0;
+                 eat = parseFloat(document.getElementById('eatvar').value) || 0;
+                 sleep = parseFloat(document.getElementById('sleepvar').value) || 0;
+                 ent = parseFloat(document.getElementById('entvar').value) || 0;
+                 sched = parseFloat(document.getElementById('schedvar').value) || 0;
+               
+                 //24 hours in a day minus the added total
+                 total = work + eat + sleep + ent + sched;
+                 difference = 24-total;
+                 
+                 //if total is more than 24, gives a message (error message)
+                 if(total > 24) {
+              document.getElementById("total").innerHTML = "Total is " + total + ". Day only has 24 hours."
+             
+              }// end if
+              
+              //if total is less than 24 hours, executes the rest
+              else { 
+                 document.getElementById("total").innerHTML = total;
+                 document.getElementById("difference").innerHTML = difference;
+                 
+                 
+                 //JSON array of objects that hold data for chart
+                 things = [{name: "work", val: work, color: "purple"},
+                 {name: "eat", val: eat, color: "blue"},
+                 {name: "sleep", val: sleep, color: "green"},
+                 {name: "ent", val: ent, color: "red"},
+                 {name: "sched", val: sched, color: "orange"},
+                 ];
+                 
+                
+                 // loops through JSON to get width, name and color for each bar.
+                  for(i = 0; i< things.length; i++) {
+                  document.getElementById(things[i].name + "div").style.width = things[i].val*50 + "px";
+                  document.getElementById(things[i].name + "div").style.backgroundColor = things[i].color;
+                  document.getElementById(things[i].name + "div").innerHTML = Math.round((things[i].val/24)*100) + "%";
+                  document.getElementById(things[i].name + "text").innerHTML = things[i].name;
+              
+               }//end for
+               }  //end else
+                return false;    
+                 
+               } // end function
+               
+              </script>    
+    </section>
+    <section id="download" class="download-section content-section text-center" style="background-image:url('assets/img/downloads-bg.jpg');">
+        <div class="container">
+            <div class="col-lg-8 mx-auto">
+                <h1>Get started</h1>
+                <p>*</p>
+                <li class="nav-item nav-link btn-link btn-lg btn-default js-scroll-trigger" role="presentation"><a class="nav-link btn-lg active btn-default btn-link js-scroll-trigger" href="checkin.html">Check In</a></li>
+                
+        </div>
+    </section>
+    <div class="map-clean"></div>
+    <footer>
+        <div class="container text-center">
+            <p>MHT</p>
+        </div>
+    </footer>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+    <script src="assets/js/grayscale.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,72 @@
+<!-- Check In Page -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Mental Health Triage</title>
+
+        <meta name="viewport" content="width=device-width"/>
+        <script src="https://unpkg.com/jquery"></script>
+        <script src="https://surveyjs.azureedge.net/1.7.28/survey.jquery.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="./index.css">
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+        <title>Home - MHT</title>
+        <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin:700">
+        <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    </head>
+    <body>
+
+        <body id="page-top" style="background-color: rgb(115, 143, 180);">
+            <nav class="navbar navbar-light navbar-expand-md navbar navbar-expand-lg fixed-top" id="mainNav" style="background-color: #3ca699;">
+                <div class="container"><a class="navbar-brand js-scroll-trigger" href="index.html" style="font-family: Cabin, sans-serif;">Mental Health Triage</a><button data-toggle="collapse" class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" type="button" aria-controls="navbarResponsive"
+                        aria-expanded="false" aria-label="Toggle navigation" value="Menu"><i class="fa fa-bars"></i></button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="nav navbar-nav ml-auto">
+                            <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link active js-scroll-trigger" href="MentalHealthTriage/MHTApp/index.html">check in</a></li>
+                            <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="activitytracker.html">activity tracker</a></li>
+                            <li class="nav-item nav-link js-scroll-trigger" role="presentation"><a class="nav-link js-scroll-trigger" href="resources.html">resources</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- JSON executes here, then below, the result follows -->
+
+            <div id="surveyElement" style="display:inline-block;width:100%;"></div>
+            <div id="result"></div>
+
+            <a id='link'>anchor</a>
+
+            <!-- Button to pull up an email client -->
+            <button><a id='button' href="mailto:GP@example.com?body=Copy%20and%20paste%20results%20here%20:)%20Be%20sure%20to%20edit%20the%20recipient%20as%20well%20!">Click Here to Open Email</a></button>
+
+            
+
+        <script type="text/javascript" src="./index.js"></script>
+
+            <!-- Another section with brief instructions -->
+            <header class="masthead" style="background-image:url('assets/img/intro-bg.jpg');">
+                <div class="intro-body" style="background-image: url(&quot;assets/img/more-mountains.jpeg&quot;);">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 mx-auto">
+                                <h1 class="brand-heading" style="font-size: 34px;color: #266659;"></h1>
+                                <p class="intro-text" style="color: black">Just answer as best you can. :) If you find yourself coming up with some topics you may want to discuss with your GP or a trusted friend or family, feel free to copy or print out the questions/ answers or results using the button above.</p></a></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+        <footer class="footer text-faded text-center py-5" style="background-color: #39434d;">
+            <div class="container">
+                <p class="m-0 small">MHT</p>
+            </div>
+        </footer>
+
+    </body>
+</html>
